@@ -11,4 +11,14 @@ then
   exit 0
 fi
 
+set +e
 uv run pytest
+status=$?
+
+# exit 5 = no tests collected (treat as success)
+if [ "$status" -eq 5 ]
+then
+  exit 0
+fi
+
+exit "$status"
