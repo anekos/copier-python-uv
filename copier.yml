@@ -15,6 +15,7 @@ project_type:
     - lambda_terraform
 
 _tasks:
-  - command: 'uv add --dev ruff mypy pytest'
+  - command: 'uv add --dev ruff mypy pytest pre-commit'
+  - command: 'uv run pre-commit install'
   - command: 'uv add --dev cfn-lint aws-sam-cli'
     when: "{{ project_type == 'lambda_sam' }}"
