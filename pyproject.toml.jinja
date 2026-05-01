@@ -11,10 +11,10 @@ requires-python = ">=3.13"
 dependencies = []
 
 [project.scripts]
-{{ project_name }} = "{{ project_name }}.main:main"
+{{ package_name }} = "{{ package_name }}.main:main"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/{{ project_name }}"]
+packages = ["src/{{ package_name }}"]
 
 [dependency-groups]
 dev = []
