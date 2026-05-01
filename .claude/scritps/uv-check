@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+set -euC
+# set -o pipefail
+
+INPUT=$(cat)
+
+# 既に Stop hook が動いている場合はスキップ
+if echo "$INPUT" | jq -e '.stop_hook_active == true' > /dev/null 2>&1
+then
+  exit 0
+fi
+
+git diff --name-only HEAD | grep '\.py$' | xargs -r uv run mypy .
+git diff --name-only HEAD | grep '\.py$' | xargs -r uv run ruff check --fix
+git diff --name-only HEAD | grep '\.py$' | xargs -r uv run ruff format
