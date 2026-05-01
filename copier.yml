@@ -13,3 +13,8 @@ project_type:
     - local
     - lambda_sam
     - lambda_terraform
+
+_tasks:
+  - command: 'uv add --dev ruff mypy pytest'
+  - command: 'uv add --dev cfn-lint aws-sam-cli'
+    when: "{{ project_type == 'lambda_sam' }}"
