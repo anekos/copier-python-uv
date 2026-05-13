@@ -19,3 +19,4 @@ _tasks:
   - command: 'uv run pre-commit install'
   - command: 'uv add --dev cfn-lint aws-sam-cli'
     when: "{{ project_type == 'lambda_sam' }}"
+  - command: 'git init .'
