@@ -18,3 +18,7 @@ packages = ["src/{{ package_name }}"]
 
 [dependency-groups]
 dev = []
+
+[tool.mypy]
+mypy_path = "src"
+explicit_package_bases = true
