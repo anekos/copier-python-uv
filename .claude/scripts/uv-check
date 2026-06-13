@@ -11,6 +11,9 @@ then
   exit 0
 fi
 
-git diff --name-only HEAD | grep '\.py$' | xargs -r uv run mypy .
+if git diff --name-only HEAD | grep -q '\.py$'
+then
+  uv run mypy .
+fi
 git diff --name-only HEAD | grep '\.py$' | xargs -r uv run ruff check --fix
 git diff --name-only HEAD | grep '\.py$' | xargs -r uv run ruff format
